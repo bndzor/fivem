@@ -55,7 +55,7 @@ workspace "CitizenMP"
 		os.getenv("BOOST_ROOT")
 	}
 
-	defines { "GTEST_HAS_PTHREAD=0", "BOOST_ALL_NO_LIB" }
+	defines { "GTEST_HAS_PTHREAD=0", "BOOST_ALL_NO_LIB", "BOOST_NO_AUTO_PTR" }
 
 	defines { "_HAS_AUTO_PTR_ETC" } -- until boost gets fixed
 
