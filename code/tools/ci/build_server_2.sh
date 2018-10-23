@@ -10,6 +10,13 @@ echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
 apk --no-cache update
 apk --no-cache upgrade
 
+#Temporary workaround for libc,mono and musl (1/2)
+apk add curl
+curl -sLo /etc/apk/keys/apk-5bcf37ec.rsa.pub https://repo.fivem.fun/fivemfun.pub
+echo https://repo.fivem.fun/packages/community >> /etc/apk/repositories
+echo https://repo.fivem.fun/packages/main >> /etc/apk/repositories
+echo https://repo.fivem.fun/packages/testing >> /etc/apk/repositories
+
 # install runtime dependencies
 apk add --no-cache libc++ curl libssl1.0 libunwind libstdc++ zlib c-ares icu-libs
 
@@ -24,6 +31,9 @@ apk add v8
 
 # install compile-time dependencies
 apk add --no-cache --virtual .dev-deps libc++-dev curl-dev clang clang-dev build-base linux-headers openssl-dev python2 py2-pip lua5.3 lua5.3-dev mono-dev c-ares-dev v8-dev
+
+#Temporary workaround for libc,mono and musl (2/2)
+apk update && apk upgrade
 
 # install ply
 pip install ply
